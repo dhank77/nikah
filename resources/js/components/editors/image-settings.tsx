@@ -1,3 +1,4 @@
+import React from 'react';
 import { useNode } from '@craftjs/core';
 import { Checkbox } from '../ui/checkbox';
 import { Input } from '../ui/input';
@@ -143,3 +144,5 @@ export const ImageSettings = () => {
         </div>
     );
 };
+
+export default ImageSettings;

@@ -14,7 +14,7 @@ export const Toolbox: React.FC = () => {
     {
       name: 'Teks',
       icon: '📝',
-      component: <Element id="text_element" is={Text} text="Teks Default" fontSize={16} />
+      component: <Element id="text_element" is={Text} text="Teks Default" fontSize={16} color={''} />
     },
     {
       name: 'Button',
@@ -34,7 +34,7 @@ export const Toolbox: React.FC = () => {
     {
       name: 'Image',
       icon: '🖼️',
-      component: <Element id="image_element" is={ImageComponent} src="https://via.placeholder.com/300x200?text=Gambar" width={300} height={200} />
+      component: <Element id="image_element" is={ImageComponent} src="https://placehold.co/300x200?text=Gambar" width={300} height={200} />
     }
   ];
 

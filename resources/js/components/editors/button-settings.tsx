@@ -20,7 +20,7 @@ export const ButtonSettings = () => {
           id="text"
           value={text}
           onChange={(e) =>
-            setProp((props: any) => {
+            setProp((props: { text: string; }) => {
               props.text = e.target.value;
             })
           }
@@ -33,7 +33,7 @@ export const ButtonSettings = () => {
         <Select
           value={size}
           onValueChange={(value) =>
-            setProp((props: any) => {
+            setProp((props: { size: string; }) => {
               props.size = value;
             })
           }
@@ -54,7 +54,7 @@ export const ButtonSettings = () => {
         <Select
           value={variant}
           onValueChange={(value) =>
-            setProp((props: any) => {
+            setProp((props: { variant: string; }) => {
               props.variant = value;
             })
           }
@@ -77,7 +77,7 @@ export const ButtonSettings = () => {
           type="color"
           value={color}
           onChange={(e) =>
-            setProp((props: any) => {
+            setProp((props: { color: string; }) => {
               props.color = e.target.value;
             })
           }
@@ -91,7 +91,7 @@ export const ButtonSettings = () => {
           type="color"
           value={backgroundColor}
           onChange={(e) =>
-            setProp((props: any) => {
+            setProp((props: { backgroundColor: string; }) => {
               props.backgroundColor = e.target.value;
             })
           }
@@ -105,7 +105,7 @@ export const ButtonSettings = () => {
           type="number"
           value={borderRadius}
           onChange={(e) =>
-            setProp((props: any) => {
+            setProp((props: { borderRadius: number; }) => {
               props.borderRadius = parseInt(e.target.value) || 0;
             })
           }
@@ -116,3 +116,5 @@ export const ButtonSettings = () => {
     </div>
   );
 };
+
+export default ButtonSettings;

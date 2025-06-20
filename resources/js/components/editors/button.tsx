@@ -1,5 +1,6 @@
 import React from 'react';
 import { useNode } from '@craftjs/core';
+import { CraftComponent } from '@/types/craft';
 
 type ButtonProps = {
   text: string;
@@ -101,8 +102,8 @@ export const ButtonComponent: React.FC<ButtonProps> = ({
   );
 };
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-(ButtonComponent as any).craft = {
+const ButtonSettings = React.lazy(() => import('./button-settings'));
+(ButtonComponent as CraftComponent).craft = {
   displayName: 'Button',
   props: {
     text: 'Klik Saya',
@@ -114,6 +115,6 @@ export const ButtonComponent: React.FC<ButtonProps> = ({
     padding: 8
   },
   related: {
-    settings: () => import('./button-settings').then(module => module.ButtonSettings)
+    settings: ButtonSettings,
   }
 };

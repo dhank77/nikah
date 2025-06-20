@@ -3,6 +3,7 @@ import { useEditor } from '@craftjs/core';
 import { Button } from '../ui/button';
 import { Separator } from '../ui/separator';
 import { Trash2 } from 'lucide-react';
+import { SettingsErrorBoundary } from './settings-error-boundary';
 
 export const SettingsPanel: React.FC = () => {
   const { selected, actions, query } = useEditor((state, query) => {
@@ -14,7 +15,17 @@ export const SettingsPanel: React.FC = () => {
   });
 
   const selectedNode = selected && query.node(selected).get();
-  const SettingsComponent = selectedNode?.related?.settings;
+  
+  const getSettingsComponent = () => {
+    try {
+      return selectedNode?.related?.settings;
+    } catch (error) {
+      console.error('Error accessing settings component:', error);
+      return null;
+    }
+  };
+  
+  const SettingsComponent = getSettingsComponent();
 
   return (
     <div className="p-4 h-full">
@@ -45,7 +56,21 @@ export const SettingsPanel: React.FC = () => {
           <Separator />
           
           {SettingsComponent ? (
-            <SettingsComponent />
+            <SettingsErrorBoundary 
+              componentName={selectedNode?.displayName}
+              onReset={() => {
+                // Force re-render by clearing and re-selecting
+                const currentSelected = selected;
+                actions.selectNode();
+                setTimeout(() => {
+                  if (currentSelected) {
+                    actions.selectNode(currentSelected);
+                  }
+                }, 100);
+              }}
+            >
+              <SettingsComponent />
+            </SettingsErrorBoundary>
           ) : (
             <div className="text-center py-8">
               <p className="text-gray-500 dark:text-gray-400 text-sm">

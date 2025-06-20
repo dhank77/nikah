@@ -108,3 +108,5 @@ export const ContainerSettings = () => {
     </div>
   );
 };
+
+export default ContainerSettings;

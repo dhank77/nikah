@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
+import { CraftComponent } from '@/types/craft';
 import { useNode } from '@craftjs/core';
 import React from 'react';
 
@@ -62,8 +62,8 @@ export const Container: React.FC<ContainerProps> = ({
     );
 };
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-(Container as any).craft = {
+const ContainerSettings = React.lazy(() => import('./container-settings'));
+(Container as CraftComponent<ContainerProps>).craft = {
     displayName: 'Container',
     props: {
         padding: 20,
@@ -78,7 +78,7 @@ export const Container: React.FC<ContainerProps> = ({
         canDrag: () => true,
     },
     related: {
-        settings: () => import('./container-settings').then((m) => m.ContainerSettings),
+        settings: ContainerSettings,
     },
 };
 

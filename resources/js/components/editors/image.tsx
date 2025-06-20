@@ -1,6 +1,7 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import React from 'react';
 import { useNode } from '@craftjs/core';
+import { CraftComponent } from '@/types/craft';
+import ImageSettings from './image-settings';
 
 interface ImageProps {
   src?: string;
@@ -14,7 +15,7 @@ interface ImageProps {
 }
 
 export const ImageComponent: React.FC<ImageProps> = ({
-  src = 'https://via.placeholder.com/300x200?text=Gambar',
+  src = 'https://placehold.co/300x200?text=Gambar',
   alt = 'Gambar',
   width = 300,
   height = 200,
@@ -37,9 +38,7 @@ export const ImageComponent: React.FC<ImageProps> = ({
           connect(drag(ref));
         }
       }}
-      className={`relative inline-block ${
-        isSelected ? 'ring-2 ring-blue-500' : ''
-      }`}
+      className="relative inline-block"
       style={{
         width: width,
         height: height,
@@ -60,21 +59,20 @@ export const ImageComponent: React.FC<ImageProps> = ({
         }}
         onError={(e) => {
           const target = e.target as HTMLImageElement;
-          target.src = 'https://via.placeholder.com/300x200?text=Gambar+Tidak+Ditemukan';
+          target.src = 'https://placeholde.co/300x200?text=Gambar+Tidak+Ditemukan';
         }}
       />
       {isSelected && (
-        <div className="absolute inset-0 bg-blue-500 bg-opacity-10 pointer-events-none" />
+        <div className="absolute inset-0 border-2 border-blue-500 border-dashed pointer-events-none" />
       )}
     </div>
   );
 };
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-(ImageComponent as any).craft = {
+(ImageComponent as CraftComponent<ImageProps>).craft = {
   displayName: 'Image',
   props: {
-    src: 'https://via.placeholder.com/300x200?text=Gambar',
+    src: 'https://placehold.co/300x200?text=Gambar',
     alt: 'Gambar',
     width: 300,
     height: 200,
@@ -84,6 +82,6 @@ export const ImageComponent: React.FC<ImageProps> = ({
     shadow: false
   },
   related: {
-    settings: () => import('./image-settings').then(module => module.ImageSettings)
+    settings: ImageSettings
   }
 };

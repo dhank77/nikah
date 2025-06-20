@@ -1,13 +1,7 @@
 import React from "react";
 import { useNode } from "@craftjs/core";
-
-type TextProps = {
-  text: string;
-  fontSize: number;
-  color?: string;
-  fontWeight?: string;
-  textAlign?: 'left' | 'center' | 'right';
-};
+import { TextProps } from "@/types/editor";
+import { CraftComponent } from "@/types/craft";
 
 export const Text: React.FC<TextProps> = ({ 
   text, 
@@ -62,8 +56,8 @@ export const Text: React.FC<TextProps> = ({
   );
 };
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-(Text as any).craft = {
+const TextSettings = React.lazy(() => import('./text-settings'));
+(Text as CraftComponent<TextProps>).craft = {
   displayName: "Text",
   props: {
     text: "Teks Default",
@@ -73,6 +67,6 @@ export const Text: React.FC<TextProps> = ({
     textAlign: 'left'
   },
   related: {
-    settings: () => import('./text-settings').then(m => m.TextSettings)
+    settings: TextSettings
   }
 };

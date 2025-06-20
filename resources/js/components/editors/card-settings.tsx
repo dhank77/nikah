@@ -1,6 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-// Card Settings Component
-import React from 'react';
 import { useNode } from '@craftjs/core';
 import { Input } from '../ui/input';
 import { Label } from '../ui/label';
@@ -23,7 +20,7 @@ export const CardSettings = () => {
           type="color"
           value={background}
           onChange={(e) =>
-            setProp((props: any) => {
+            setProp((props: { background: string; }) => {
               props.background = e.target.value;
             })
           }
@@ -37,7 +34,7 @@ export const CardSettings = () => {
           type="number"
           value={padding}
           onChange={(e) =>
-            setProp((props: any) => {
+            setProp((props: { padding: number; }) => {
               props.padding = parseInt(e.target.value) || 0;
             })
           }
@@ -53,7 +50,7 @@ export const CardSettings = () => {
           type="number"
           value={borderRadius}
           onChange={(e) =>
-            setProp((props: any) => {
+            setProp((props: { borderRadius: number; }) => {
               props.borderRadius = parseInt(e.target.value) || 0;
             })
           }
@@ -67,7 +64,7 @@ export const CardSettings = () => {
           id="shadow"
           checked={shadow}
           onCheckedChange={(checked) =>
-            setProp((props: any) => {
+            setProp((props: { shadow: boolean | string; }) => {
               props.shadow = checked;
             })
           }
@@ -81,7 +78,7 @@ export const CardSettings = () => {
           id="border"
           value={border}
           onChange={(e) =>
-            setProp((props: any) => {
+            setProp((props: { border: string; }) => {
               props.border = e.target.value;
             })
           }
@@ -91,3 +88,5 @@ export const CardSettings = () => {
     </div>
   );
 };
+
+export default CardSettings;

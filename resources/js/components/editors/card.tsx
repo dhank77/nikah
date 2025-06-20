@@ -1,8 +1,9 @@
 import React from 'react';
 import { useNode, Element } from '@craftjs/core';
-import { Text } from './text';
 import { ButtonComponent } from './button';
 import { Container } from './container';
+import { Text } from './text';
+import { CraftComponent } from '@/types/craft';
 
 type CardProps = {
   background: string;
@@ -58,8 +59,8 @@ export const Card: React.FC<CardProps> = ({
           text="Judul Card"
           fontSize={20}
           fontWeight="bold"
-          color="#1f2937"
-        />
+          color="#1f2937" 
+          />
         <Text
           text="Subtitle atau deskripsi singkat"
           fontSize={14}
@@ -105,8 +106,8 @@ export const Card: React.FC<CardProps> = ({
   );
 };
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-(Card as any).craft = {
+import CardSettings from './card-settings';
+(Card as CraftComponent<CardProps>).craft = {
   displayName: 'Card',
   props: {
     background: '#ffffff',
@@ -117,9 +118,9 @@ export const Card: React.FC<CardProps> = ({
   },
   rules: {
     canDrag: () => true,
-    canMoveIn: () => false, // Card has predefined structure
+    canMoveIn: () => false,
   },
   related: {
-    settings: () => import('./card-settings').then(module => module.CardSettings)
+    settings: CardSettings,
   }
 };

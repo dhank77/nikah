@@ -1,11 +1,10 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-import React from 'react';
+import React, { memo } from 'react';
 import { useNode } from '@craftjs/core';
 import { Input } from '../ui/input';
 import { Label } from '../ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../ui/select';
 
-export const TextSettings = () => {
+export const TextSettings = memo(() => {
   const {
     actions: { setProp },
     props: { text, fontSize, color, fontWeight, textAlign },
@@ -21,7 +20,7 @@ export const TextSettings = () => {
           id="text"
           value={text}
           onChange={(e) =>
-            setProp((props: any) => {
+            setProp((props: { text: string; }) => {
               props.text = e.target.value;
             })
           }
@@ -36,7 +35,7 @@ export const TextSettings = () => {
           type="number"
           value={fontSize}
           onChange={(e) =>
-            setProp((props: any) => {
+            setProp((props: { fontSize: number; }) => {
               props.fontSize = parseInt(e.target.value) || 16;
             })
           }
@@ -52,7 +51,7 @@ export const TextSettings = () => {
           type="color"
           value={color}
           onChange={(e) =>
-            setProp((props: any) => {
+            setProp((props: { color: string; }) => {
               props.color = e.target.value;
             })
           }
@@ -64,7 +63,7 @@ export const TextSettings = () => {
         <Select
           value={fontWeight}
           onValueChange={(value) =>
-            setProp((props: any) => {
+            setProp((props: { fontWeight: string; }) => {
               props.fontWeight = value;
             })
           }
@@ -85,7 +84,7 @@ export const TextSettings = () => {
         <Select
           value={textAlign}
           onValueChange={(value) =>
-            setProp((props: any) => {
+            setProp((props: { textAlign: string; }) => {
               props.textAlign = value;
             })
           }
@@ -102,4 +101,6 @@ export const TextSettings = () => {
       </div>
     </div>
   );
-};
+});
+
+export default TextSettings;
