@@ -28,7 +28,7 @@ export const Card: React.FC<CardProps> = ({
 
   return (
     <div
-      ref={(ref) => {
+      ref={(ref: HTMLDivElement | null) => {
         if (ref) {
           connect(drag(ref));
         }
@@ -43,7 +43,6 @@ export const Card: React.FC<CardProps> = ({
         transition: 'all 0.2s ease'
       }}
     >
-      {/* Header Section */}
       <Element
         id="card-header"
         is={Container}
@@ -99,8 +98,8 @@ export const Card: React.FC<CardProps> = ({
         border="none"
         minHeight={50}
       >
-        <Element is={ButtonComponent} text="Batal" size="small" variant="outline" color="#6b7280" backgroundColor="transparent" borderRadius={4} padding={8} />
-        <Element is={ButtonComponent} text="Simpan" size="small" variant="primary" color="#ffffff" backgroundColor="#3b82f6" borderRadius={4} padding={8} />
+        <Element id="card_cancel_button" is={ButtonComponent} text="Batal" size="small" variant="outline" color="#6b7280" backgroundColor="transparent" borderRadius={4} padding={8} />
+        <Element id="card_save_button" is={ButtonComponent} text="Simpan" size="small" variant="primary" color="#ffffff" backgroundColor="#3b82f6" borderRadius={4} padding={8} />
       </Element>
     </div>
   );

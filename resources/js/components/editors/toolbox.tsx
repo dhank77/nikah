@@ -1,11 +1,11 @@
 import React from 'react';
 import { useEditor, Element } from "@craftjs/core";
 import { Text } from "./text";
-import { Container } from "./container";
 import { ButtonComponent } from "./button";
 import { Card } from "./card";
 import { ImageComponent } from "./image";
 import { Button } from '../ui/button';
+import { Container } from './container';
 
 export const Toolbox: React.FC = () => {
   const { connectors } = useEditor();
@@ -14,27 +14,27 @@ export const Toolbox: React.FC = () => {
     {
       name: 'Teks',
       icon: '📝',
-      component: <Element is={Text} text="Teks Default" fontSize={16} />
+      component: <Element id="text_element" is={Text} text="Teks Default" fontSize={16} />
     },
     {
       name: 'Button',
       icon: '🔘',
-      component: <Element is={ButtonComponent} text="Klik Saya" size="medium" variant="primary" color="#ffffff" backgroundColor="#3b82f6" borderRadius={4} padding={8} />
+      component: <Element id="button_element" is={ButtonComponent} text="Klik Saya" size="medium" variant="primary" color="#ffffff" backgroundColor="#3b82f6" borderRadius={4} padding={8} />
     },
     {
       name: 'Container',
       icon: '📦',
-      component: <Element canvas is={Container} padding={20} background="#ffffff" />
+      component: <Element id="container_element" canvas is={Container} padding={20} background="#ffffff" />
     },
     {
       name: 'Card',
       icon: '🃏',
-      component: <Element is={Card} background="#ffffff" padding={20} borderRadius={8} shadow={true} border="1px solid #e5e7eb" />
+      component: <Element id="card_element" is={Card} background="#ffffff" padding={20} borderRadius={8} shadow={true} border="1px solid #e5e7eb" />
     },
     {
       name: 'Image',
       icon: '🖼️',
-      component: <Element is={ImageComponent} src="https://via.placeholder.com/300x200?text=Gambar" width={300} height={200} />
+      component: <Element id="image_element" is={ImageComponent} src="https://via.placeholder.com/300x200?text=Gambar" width={300} height={200} />
     }
   ];
 
@@ -47,7 +47,7 @@ export const Toolbox: React.FC = () => {
             key={index}
             variant="outline"
             className="w-full justify-start h-auto p-3 cursor-move hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
-            ref={(ref) => {
+            ref={(ref: HTMLButtonElement | null) => {
               if (ref) {
                 connectors.create(ref, item.component);
               }

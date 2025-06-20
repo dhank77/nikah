@@ -19,7 +19,6 @@ export const ButtonComponent: React.FC<ButtonProps> = ({
   color,
   backgroundColor,
   borderRadius,
-  padding = 8,
   onClick
 }) => {
   const {
@@ -71,7 +70,7 @@ export const ButtonComponent: React.FC<ButtonProps> = ({
 
   return (
     <button
-      ref={(ref) => {
+      ref={(ref: HTMLButtonElement | null) => {
         if (ref) {
           connect(drag(ref));
         }

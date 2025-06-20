@@ -26,7 +26,7 @@ export const Text: React.FC<TextProps> = ({
   
   return (
     <div 
-      ref={(ref) => {
+      ref={(ref: HTMLDivElement | null) => {
         if (ref) {
           connect(drag(ref));
         }

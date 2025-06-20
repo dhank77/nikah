@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React from 'react';
 import { useNode } from '@craftjs/core';
 
@@ -31,7 +32,11 @@ export const ImageComponent: React.FC<ImageProps> = ({
 
   return (
     <div
-      ref={(ref) => ref && connect(drag(ref))}
+      ref={(ref: HTMLDivElement | null) => {
+        if (ref) {
+          connect(drag(ref));
+        }
+      }}
       className={`relative inline-block ${
         isSelected ? 'ring-2 ring-blue-500' : ''
       }`}
@@ -65,6 +70,7 @@ export const ImageComponent: React.FC<ImageProps> = ({
   );
 };
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 (ImageComponent as any).craft = {
   displayName: 'Image',
   props: {

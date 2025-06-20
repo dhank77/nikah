@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+// Card Settings Component
 import React from 'react';
 import { useNode } from '@craftjs/core';
 import { Input } from '../ui/input';
