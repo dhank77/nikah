@@ -6,6 +6,10 @@ import { SettingsPanel } from '@/components/editors/settings-panel';
 import { Text } from '@/components/editors/text';
 import { Toolbox } from '@/components/editors/toolbox';
 import { TopBar } from '@/components/editors/topbar';
+import { CoupleNames } from '@/components/editors/wedding/couple-names';
+import { WeddingDate } from '@/components/editors/wedding/wedding-date';
+import { VenueInfo } from '@/components/editors/wedding/venue-info';
+import { DecorativeElement } from '@/components/editors/wedding/decorative-element';
 import { Editor, Element, Frame } from '@craftjs/core';
 import React, { Suspense, useState } from 'react';
 
@@ -18,7 +22,7 @@ const WelcomeEditor: React.FC = () => {
             {/* Main Content */}
             <div className="flex flex-1 flex-col">
                 <Suspense fallback={<div>Loading...</div>}>
-                    <Editor resolver={{ Text, Container, ButtonComponent, Card, ImageComponent }}>
+                    <Editor resolver={{ Text, Container, ButtonComponent, Card, ImageComponent, CoupleNames, WeddingDate, VenueInfo, DecorativeElement }}>
                         {/* TopBar with Craft.js controls */}
                         <TopBar />
 
@@ -98,8 +102,12 @@ const WelcomeEditor: React.FC = () => {
                                     <Element is={Container} padding={10} background="#f4f4f4" canvas>
                                         <div className="flex h-full min-h-[600px] w-full items-center justify-center rounded-lg border-2 border-dashed border-gray-300 bg-white dark:border-gray-600 dark:bg-gray-900">
                                             <div className="text-center">
-                                                <div className="mb-2 text-lg text-gray-400 dark:text-gray-500">Drop elements here to start building</div>
-                                                <div className="text-sm text-gray-300 dark:text-gray-600">Your wedding invitation canvas</div>
+                                                <div className="mb-4 text-6xl">💒</div>
+                                                <div className="mb-2 text-lg text-gray-400 dark:text-gray-500">Mulai buat undangan pernikahan Anda</div>
+                                                <div className="text-sm text-gray-300 dark:text-gray-600">Seret komponen pernikahan dari panel kiri untuk memulai</div>
+                                                <div className="mt-4 text-xs text-gray-400 dark:text-gray-500">
+                                                    <p>💡 Tip: Mulai dengan "Nama Pasangan" dan "Tanggal Pernikahan"</p>
+                                                </div>
                                             </div>
                                         </div>
                                     </Element>

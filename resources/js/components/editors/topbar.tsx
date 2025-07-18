@@ -57,7 +57,7 @@ export const TopBar: React.FC = () => {
       <div className="flex items-center justify-between">
         <div className="flex items-center space-x-4">
           <h1 className="text-lg font-semibold text-gray-800 dark:text-gray-200">
-            Page Builder
+            Wedding Invitation Builder
           </h1>
           <div className="flex items-center space-x-2">
             <Toggle
