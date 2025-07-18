@@ -42,14 +42,24 @@ export const weddingTemplates: WeddingTemplate[] = [
     thumbnail: '/templates/classic-gold.jpg',
     components: {
       "ROOT": {
-        "type": "div",
-        "nodes": ["couple-names", "wedding-date", "venue-info", "decorative"],
+        "type": {
+          "resolvedName": "Container"
+        },
+        "isCanvas": true,
         "props": {
-          "className": "min-h-screen bg-gradient-to-b from-amber-50 to-white p-8"
-        }
+          "className": "min-h-screen bg-gradient-to-b from-amber-50 to-white p-8 flex flex-col items-center justify-center space-y-8"
+        },
+        "displayName": "Container",
+        "custom": {},
+        "hidden": false,
+        "nodes": ["couple-names", "wedding-date", "venue-info", "decorative"],
+        "linkedNodes": {}
       },
       "couple-names": {
-        "type": "CoupleNames",
+        "type": {
+          "resolvedName": "CoupleNames"
+        },
+        "isCanvas": false,
         "props": {
           "brideName": "Sarah",
           "groomName": "Michael",
@@ -59,10 +69,19 @@ export const weddingTemplates: WeddingTemplate[] = [
           "textAlign": "text-center",
           "color": "#B8860B",
           "fontFamily": "font-serif"
-        }
+        },
+        "displayName": "Couple Names",
+        "custom": {},
+        "parent": "ROOT",
+        "hidden": false,
+        "nodes": [],
+        "linkedNodes": {}
       },
       "wedding-date": {
-        "type": "WeddingDate",
+        "type": {
+          "resolvedName": "WeddingDate"
+        },
+        "isCanvas": false,
         "props": {
           "date": "2024-06-15",
           "time": "16:00",
@@ -71,10 +90,19 @@ export const weddingTemplates: WeddingTemplate[] = [
           "fontSize": "text-xl",
           "color": "#8B4513",
           "textAlign": "text-center"
-        }
+        },
+        "displayName": "Wedding Date",
+        "custom": {},
+        "parent": "ROOT",
+        "hidden": false,
+        "nodes": [],
+        "linkedNodes": {}
       },
       "venue-info": {
-        "type": "VenueInfo",
+        "type": {
+          "resolvedName": "VenueInfo"
+        },
+        "isCanvas": false,
         "props": {
           "venueName": "Grand Ballroom",
           "address": "123 Wedding Street, City",
@@ -82,15 +110,30 @@ export const weddingTemplates: WeddingTemplate[] = [
           "showMap": true,
           "fontSize": "text-lg",
           "color": "#654321"
-        }
+        },
+        "displayName": "Venue Info",
+        "custom": {},
+        "parent": "ROOT",
+        "hidden": false,
+        "nodes": [],
+        "linkedNodes": {}
       },
       "decorative": {
-        "type": "DecorativeElement",
+        "type": {
+          "resolvedName": "DecorativeElement"
+        },
+        "isCanvas": false,
         "props": {
           "elementType": "divider",
           "size": "large",
           "color": "#DAA520"
-        }
+        },
+        "displayName": "Decorative Element",
+        "custom": {},
+        "parent": "ROOT",
+        "hidden": false,
+        "nodes": [],
+        "linkedNodes": {}
       }
     },
     colors: {

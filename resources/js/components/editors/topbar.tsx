@@ -4,9 +4,13 @@ import { Button } from '../ui/button';
 
 import { Label } from '../ui/label';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '../ui/dialog';
-import { Save, Upload, Eye, Edit, Download, Copy, Sun, Moon } from 'lucide-react';
+import { Save, Upload, Eye, Edit, Download, Copy, Sun, Moon, Palette, Type } from 'lucide-react';
 import { Toggle } from '../ui/toggle';
 import { useAppearance } from '@/hooks/use-appearance';
+import { useTemplate } from '@/hooks/use-template';
+import { TemplateSelector } from './template-selector';
+import { TypographyPanel } from './typography-panel';
+import { TypographyPreset, WeddingFont } from '@/types/typography';
 
 export const TopBar: React.FC = () => {
   const { actions, query, enabled } = useEditor((state) => ({
@@ -14,9 +18,16 @@ export const TopBar: React.FC = () => {
   }));
   
   const { appearance, updateAppearance } = useAppearance();
+  const {
+    applyTemplate,
+    isTemplateModalOpen,
+    openTemplateModal,
+    closeTemplateModal
+  } = useTemplate();
   const [dialogOpen, setDialogOpen] = useState(false);
   const [jsonData, setJsonData] = useState('');
   const [saveDialogOpen, setSaveDialogOpen] = useState(false);
+  const [typographyPanelOpen, setTypographyPanelOpen] = useState(false);
 
   const handleSave = () => {
     const json = query.serialize();
@@ -52,6 +63,16 @@ export const TopBar: React.FC = () => {
     URL.revokeObjectURL(url);
   };
 
+  const handleApplyTypographyPreset = (preset: TypographyPreset) => {
+    // TODO: Implement typography preset application logic
+    console.log('Applying typography preset:', preset.id, preset);
+  };
+
+  const handleApplyFont = (font: WeddingFont, target: 'heading' | 'body' | 'accent') => {
+    // TODO: Implement font application logic
+    console.log('Applying font:', font.family, 'Target:', target, font);
+  };
+
   return (
     <div className="bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 px-4 py-2">
       <div className="flex items-center justify-between">
@@ -85,6 +106,24 @@ export const TopBar: React.FC = () => {
         </div>
 
         <div className="flex items-center space-x-2">
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={openTemplateModal}
+          >
+            <Palette className="h-4 w-4 mr-1" />
+            Templates
+          </Button>
+          
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={() => setTypographyPanelOpen(true)}
+          >
+            <Type className="h-4 w-4 mr-1" />
+            Typography
+          </Button>
+          
           <Button
             variant="outline"
             size="sm"
@@ -171,6 +210,19 @@ export const TopBar: React.FC = () => {
               </div>
             </DialogContent>
           </Dialog>
+          
+          <TemplateSelector
+            isOpen={isTemplateModalOpen}
+            onClose={closeTemplateModal}
+            onSelectTemplate={applyTemplate}
+          />
+          
+          <TypographyPanel
+            isOpen={typographyPanelOpen}
+            onClose={() => setTypographyPanelOpen(false)}
+            onApplyPreset={handleApplyTypographyPreset}
+            onApplyFont={handleApplyFont}
+          />
         </div>
       </div>
     </div>
